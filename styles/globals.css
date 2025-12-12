@@ -1,0 +1,353 @@
+/* styles/globals.css */
+
+/* ===============================
+   Reset-ish + base
+================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --royal-maroon: #4b1b1b;
+  --royal-maroon-deep: #320f16;
+  --royal-gold: #d4af37;
+  --royal-gold-soft: #f4e0a6;
+  --royal-ivory: #fdf7f3;
+  --royal-blush: #faece2;
+  --text: #2c1a1a;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+
+  /* ✅ Royal background for all pages */
+  background: linear-gradient(
+      to bottom,
+      rgba(82, 22, 22, 0.92),
+      rgba(235, 220, 196, 0.92)
+    ),
+    url("/images/global-bg/palace-bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* sensible defaults */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+.category-card:focus-visible {
+  outline: 3px solid rgba(212, 175, 55, 0.65);
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+/* Layout */
+.site-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main {
+  flex: 1;
+}
+
+/* ===============================
+   Header
+================================ */
+.mz-header {
+  background: linear-gradient(90deg, var(--royal-maroon-deep), var(--royal-maroon));
+  color: white;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mz-logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.mz-tagline {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.mz-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 0.95rem;
+}
+
+.mz-nav a {
+  color: #ffe9b7;
+  position: relative;
+}
+
+.mz-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--royal-gold);
+  transition: width 0.2s ease;
+}
+
+.mz-nav a:hover::after {
+  width: 100%;
+}
+
+/* ===============================
+   Hero
+================================ */
+.hero {
+  position: relative;
+  height: 520px; /* Taller hero banner */
+  width: 100%;
+  background: url("/images/hero/hero-main.jpg") center top / cover no-repeat;
+  overflow: hidden;
+}
+
+/* ✅ readability overlay */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(50, 15, 22, 0.15),
+    rgba(50, 15, 22, 0.55)
+  );
+}
+
+/* soft inner panel (optional) */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 44px auto 12px;
+  background: rgba(253, 247, 243, 0.9);
+  border-radius: 30px;
+  padding: 26px 30px 22px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(244, 224, 166, 0.8);
+}
+
+/* If you want hero-inner hidden, add class "hero-inner is-hidden" in JSX */
+.hero-inner.is-hidden {
+  display: none !important;
+}
+
+.hero-title {
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #3a1515;
+  margin-bottom: 12px;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #6b4c4c;
+}
+
+.hero-cta {
+  margin-top: 26px;
+}
+
+.hero-cta-inline {
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* ===============================
+   Category grid
+================================ */
+.category-section {
+  padding: 32px 40px 48px;
+}
+
+.category-title {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #3a1515;
+  margin-bottom: 24px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.category-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 22px;
+  padding: 0;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f0d8c8;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease,
+    filter 0.18s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(75, 27, 27, 0.25);
+  border-color: var(--royal-gold);
+  filter: saturate(1.1);
+}
+
+.category-image {
+  height: 220px; /* taller so faces fit */
+  background-size: cover;
+  background-position: center top; /* show upper part (faces) */
+}
+
+.category-title-only {
+  padding: 14px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3a1515;
+  text-decoration: none !important;
+}
+
+.category-content {
+  padding: 14px 18px 18px;
+}
+
+.category-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #3a1515;
+  margin-bottom: 6px;
+}
+
+.category-tagline {
+  font-size: 0.85rem;
+  color: #7a5858;
+}
+
+/* Remove underline from all links inside category cards */
+.category-card a,
+.category-card a:visited,
+.category-card a:hover,
+.category-card a:active {
+  text-decoration: none !important;
+  border: none !important;
+}
+
+/* ===============================
+   CTA button
+================================ */
+.btn-primary {
+  background: var(--royal-gold);
+  color: #2c1a1a;
+  padding: 11px 26px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: #e6bf3d;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ===============================
+   Cart + nav helpers
+================================ */
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cart-icon {
+  font-size: 1.2rem;
+}
+
+.cart-page {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.cart-page h1 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  color: #3a1515;
+}
+
+.cart-page p {
+  margin-bottom: 16px;
+  color: #6b4c4c;
+}
+
+.back-to-shop-link {
+  color: var(--royal-maroon);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ===============================
+   Footer
+================================ */
+.mz-footer {
+  background: #3a1515;
+  color: #f7e6d0;
+  padding: 12px 40px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 900px) {
+  .mz-header {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .mz-nav {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .category-section {
+    padding: 24px 16px 36px;
+  }
+}

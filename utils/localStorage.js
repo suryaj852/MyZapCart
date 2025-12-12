@@ -1,0 +1,1 @@
+// localStorage.js - placeholder content

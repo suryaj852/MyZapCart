@@ -1,0 +1,1 @@
+// ProductCard.js - placeholder content
